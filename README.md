@@ -1,1 +1,3 @@
-# markerless_motion_capture_for_RUSS
+# Markerless Motion Capture for Reactive Robotic US
+
+In this work, it is aimed to achieve the robotic ultrasound while compansating expected and unexpected movements of the object, without using any markers. This way, the the 3D compounding of the artery of interest will be generated, and later can be used for diagnosis of peripheral vascular disease. The project has two main parts, first the registration between the preoperative CT data and the point cloud captured by the depth sensor used will registered. Then using a segmentation network binary mask of the limb will generated in real, later on these masks will be conpared between each frame using the dice score and if the dice score drops below the preset threshold then it is considered that the motion occured and a signal will be sent to the robot to stop the scan, and later using ICP algorithm, the movement will get calculated and the scan trajectory will get updated.
