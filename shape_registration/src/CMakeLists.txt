@@ -13,12 +13,6 @@ find_package(Yaml-cpp 0.6.0 REQUIRED)
 message("??? ${OpenCV_LIBS}")
 message("??? END")
 
-find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
-foreach(plugin ${Qt5Network_PLUGINS})
-  get_target_property(_loc ${plugin} LOCATION)
-  message("Plugin ${plugin} is at location ${_loc}")
-endforeach()
-
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages

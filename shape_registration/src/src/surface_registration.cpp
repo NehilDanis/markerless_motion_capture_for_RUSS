@@ -1,5 +1,5 @@
 #include "shape_registration/surface_registration.hpp"
-#include "shape_registration/algorithms/icp_algorithm.hpp"
+#include "icp_algorithm.hpp"
 #include <pcl/io/ply_io.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl/common/pca.h>
