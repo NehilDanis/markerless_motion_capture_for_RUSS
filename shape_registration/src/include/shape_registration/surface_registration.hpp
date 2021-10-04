@@ -13,7 +13,7 @@
 #include <pcl/io/pcd_io.h>
 
 #include "preprocessing.hpp"
-#include "icp_algorithm.hpp
+#include "icp_algorithm.hpp"
 
 #include <vector>
 
