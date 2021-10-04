@@ -22,7 +22,7 @@ This work aims to achieve the robotic ultrasound while compensating expected and
 6) You will also need [Yaml-cpp](https://github.com/jbeder/yaml-cpp "yaml_cpp_github").
 7) If you see any more packages, that is required for the build and you don't have it, please keep installing those, otherwise let's go to the next step.
 8) So now, add the ROS_Vision_Controller directory from this project into the src of your catkin workspace.
-9) Other packages required to be in the src of your catkin workspace; [iiwa_stack](https://gitlab.lrz.de/CAMP_ROS/iiwa_stack "iiwa_stack_gitlab"), [easy_handeye](https://github.com/IFL-CAMP/easy_handeye "easy_handeye_github"), [easy_aruco](https://github.com/marcoesposito1988/easy_aruco/pull/3 "easy_aruco") well easy aruco, there is yet another pull request of mine, which I didn't get to chance to finish but pull from my branch, so that you can visualize the pose, position and the marker on the image.
+9) Other packages required to be in the src of your catkin workspace; [iiwa_stack](https://github.com/IFL-CAMP/iiwa_stack "iiwa_stack_github"), [easy_handeye](https://github.com/IFL-CAMP/easy_handeye "easy_handeye_github"), [easy_aruco](https://github.com/marcoesposito1988/easy_aruco/pull/3 "easy_aruco") well easy aruco, there is yet another pull request of mine, which I didn't get to chance to finish but pull from my branch, so that you can visualize the pose, position and the marker on the image.
 10) Good Luck :D
 
 ## How to use this project
