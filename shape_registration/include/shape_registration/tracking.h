@@ -23,8 +23,8 @@
 /*******************************************************************
 * CUSTOM
 *******************************************************************/
-#include "shape_registration/utils/preprocessing.hpp"
-#include "shape_registration/algorithms/icp_algorithm.hpp"
+#include "preprocessing.hpp"
+#include "icp_algorithm.hpp"
 
 /*******************************************************************
 * SENSOR_FUSION INCLUDES

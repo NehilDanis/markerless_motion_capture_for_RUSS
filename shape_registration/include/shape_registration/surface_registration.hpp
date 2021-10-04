@@ -12,8 +12,8 @@
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl/io/pcd_io.h>
 
-#include "shape_registration/utils/preprocessing.hpp"
-#include "shape_registration/algorithms/icp_algorithm.hpp"
+#include "preprocessing.hpp"
+#include "icp_algorithm.hpp
 
 #include <vector>
 

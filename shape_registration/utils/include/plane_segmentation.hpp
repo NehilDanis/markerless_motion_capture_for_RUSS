@@ -2,7 +2,7 @@
 #define PLANE_SEGMENTATION_HPP
 
 #include <iostream>
-#include "shape_registration/utils/preprocessing.hpp"
+#include "preprocessing.hpp"
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <pcl_conversions/pcl_conversions.h>

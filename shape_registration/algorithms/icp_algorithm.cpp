@@ -1,4 +1,4 @@
-#include "shape_registration/algorithms/icp_algorithm.hpp"
+#include "icp_algorithm.hpp"
 #include <pcl/io/ply_io.h>
 #include <pcl/common/common.h>
 #include <string>

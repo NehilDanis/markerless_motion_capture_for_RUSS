@@ -1,4 +1,4 @@
-#include "shape_registration/utils/plane_segmentation.hpp"
+#include "plane_segmentation.hpp"
 #include <yaml-cpp/yaml.h>
 #include <pcl/common/common.h>
 #include <pcl/common/transforms.h>

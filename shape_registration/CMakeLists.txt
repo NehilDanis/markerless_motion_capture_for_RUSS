@@ -71,23 +71,6 @@ include_directories(
 catkin_install_python(PROGRAMS scripts/publisher_pyro.py scripts/image_saver.py scripts/movement_detector.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
-#set(PLUGIN_SOURCES
-#    apps/mainwindowarucotesting.cpp
-#    apps/mainwindowarucotesting.ui
-#)
-#add_library(aruco_checker_node_lib SHARED ${PLUGIN_SOURCES})
-#target_include_directories(aruco_checker_node_lib PRIVATE
-#  ${Qt5Widgets_INCLUDE_DIRS}
-#  )
-
-#message(${Qt5Widgets_INCLUDE_DIRS})
-
-#target_link_libraries (aruco_checker_node_lib
-#    Qt5::Widgets
-#)
-
-
-#set(OpenCV_LIBS opencv_core opencv_imgproc opencv_calib3d opencv_video opencv_features2d opencv_highgui)
 
 add_executable(calibration_checker_node utils/calibration_checker_node.cpp)
 
@@ -128,15 +111,11 @@ target_link_libraries(calibration_checker_node
    ${YAML_CPP_LIBRARIES}
  )
 
-#target_include_directories(aruco_checker_node PRIVATE ${Qt5Widgets_INCLUDE_DIRS})
-#message(${Qt5Widgets_INCLUDE_DIRS})
+
 target_link_libraries(aruco_checker_node
    ${OpenCV_LIBRARIES}
    ${catkin_LIBRARIES}
    ${PCL_LIBRARIES}
-#   Qt5::Widgets
-#   Qt5::Core
-#   aruco_checker_node_lib
  )
 
 target_link_libraries(ROI_cropping_node

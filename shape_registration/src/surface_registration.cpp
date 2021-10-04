@@ -9,7 +9,7 @@
 #include <yaml-cpp/yaml.h>
 #include <iostream>
 #include <fstream>
-#include "shape_registration/utils/helper.hpp"
+#include "helper.hpp"
 
 
 

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "shape_registration/algorithms/icp_algorithm.hpp"
+#include "icp_algorithm.hpp"
 #include <pcl/io/ply_io.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl/common/common.h>
@@ -50,22 +50,25 @@ int main() {
   auto coords_in_robot = read_file("/home/nehil/catkin_ws_registration/src/shape_registration/test_robot.txt");
 
 
-//  icp_->find_initial_transform_for_small_sets(coords_in_cam, coords_in_robot);
+  icp_->find_initial_transform_for_small_sets(coords_in_cam, coords_in_robot);
 
 //  // once both curr and prev frames are set then apply icp and find the transformation between the two frames
-//  icp_->compute(coords_in_cam, coords_in_robot, icp_->transformation);
+  //icp_->compute(coords_in_cam, coords_in_robot);
 
 //  pcl::transformPointCloud(*coords_in_cam, *result, icp_->get_ICP_obj().getFinalTransformation());
 //  std::cout << icp_->get_ICP_obj().getFinalTransformation() * icp_->transformation << std::endl;
 
 
-  Eigen::Matrix4d transformation;
+  /*Eigen::Matrix4d transformation;
   transformation << -0.0217961,   0.635336,  -0.771934,    1.28516,
                     0.99962, 0.00104841, -0.0273565,  0.0323365,
                   -0.016593, -0.772267,  -0.635137,    0.74643,
-                          0,          0,          0,          1;
+                          0,          0,          0,          1;*/
 
-  pcl::transformPointCloud(*coords_in_cam, *result, transformation);
+  pcl::transformPointCloud(*coords_in_cam, *result, icp_->transformation);
+  for(const auto &point : result->points) {
+    std::cout << point << std::endl;
+  }
 
 
   pcl::visualization::PCLVisualizer::Ptr viewer  = std::make_shared<pcl::visualization::PCLVisualizer>("3D Viewer");
@@ -98,8 +101,8 @@ int main() {
 
   std::cout << "Error: " << distance * 1000.0f/ float(coords_in_cam->points.size()) << " mm" << std::endl;
 
-//  auto transformation = icp_->get_ICP_obj().getFinalTransformation();
-//  std::cout << transformation << std::endl;
+  auto transformation = icp_->transformation;
+  std::cout << transformation << std::endl;
 //  Eigen::Quaternionf q(transformation.block<3,3>(0,0));
 //  std::cout << "q.x()" << q.x() << std::endl;
 //  std::cout << "q.y()" << q.y() << std::endl;

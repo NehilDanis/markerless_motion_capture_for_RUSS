@@ -11,7 +11,7 @@
 
 #include <pcl/registration/correspondence_estimation.h>
 #include <pcl/registration/correspondence_rejection_sample_consensus.h>
-#include "shape_registration/utils/preprocessing.hpp"
+#include "preprocessing.hpp"
 
 #include <pcl/common/common_headers.h>
 #include <pcl/features/normal_3d.h>
