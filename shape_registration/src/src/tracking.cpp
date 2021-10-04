@@ -392,7 +392,7 @@ void MovementTracker::calculate_trasformation(const sensor_msgs::PointCloud2Cons
 //  m_icp->compute(cloud_cluster_prev, cloud_cluster_curr);
   m_icp->compute(prev_ptr, curr_ptr);
 
-  auto transformation = m_icp->get_ICP_obj().getFinalTransformation();
+  auto transformation = m_icp->icp.getFinalTransformation();
 
   Eigen::Quaternionf q(transformation.block<3,3>(0,0));
   geometry_msgs::TransformStamped movement;

@@ -208,7 +208,7 @@ void SurfaceRegistration::compute(const sensor_msgs::PointCloud2ConstPtr& ros_cl
 
      // if the registration quality is good then the artery will also be transformed to the target
      // point cloud frame
-     pcl::transformPointCloud(*artery, *artery, this->m_shape_registration->get_ICP_obj().getFinalTransformation());
+     pcl::transformPointCloud(*artery, *artery, this->m_shape_registration->icp.getFinalTransformation());
 
      // Save the points to pcd file.
 
