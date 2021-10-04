@@ -39,7 +39,7 @@ For the python 3 environment:<br />
 13) Good luck :)
 
 ## How to use this project
-This repo includes implementation of vessel simulator, modified UNet and all corresponding ROS nodes.
+
 | Commands | Description |
 | :----: | :----: |
 | `$roslaunch shape_registration registration.launch` | To run the surface registration, please change the registration.launch file according to the path or your CT and artery data |
