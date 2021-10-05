@@ -12,7 +12,6 @@ PlaneSegmentation::PlaneSegmentation(ros::NodeHandle *nh)
   nh->getParam("plane_segmentation/input_path_arm_data", m_CT_arm_input_path);
   nh->getParam("plane_segmentation/output_path_segmented_arm_data", m_segmented_CT_arm_output_path);
   nh->getParam("plane_segmentation/input_path_artery_data", m_CT_artery_input_path);
-  nh->getParam("plane_segmentation/output_path_segmented_artery_data", m_segmented_CT_artery_output_path);
 
   // read the calibration data from yaml file
 
