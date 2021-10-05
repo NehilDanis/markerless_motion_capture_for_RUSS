@@ -28,7 +28,7 @@
 <!-- STEP 3: Register CT data with the point cloud data preprocessed in the previous step using ICP -->
 <node pkg="shape_registration" type="registration_node" name="icp_registration" output="screen">
     <param name="calibration_file_path" type="string" value="/home/nehil/.ros/easy_handeye/iiwa_azure_kinect_eye_on_base.yaml"/>
-    <param name="catkin_directory_path" type="string" value="/home/nehil/catkin_ws_registration/">
+    <param name="catkin_directory_path" type="string" value="/home/nehil/catkin_ws_registration/"/>
     <param name="ct_arm_data_path" type="string" value="$(arg segmented_CT_arm_data_path)"/>
     <param name="ct_artery_data_path" type="string" value="$(arg CT_artery_data_path)"/>
     <param name="icp_max_num_of_iterations" type="double" value="300"/>
