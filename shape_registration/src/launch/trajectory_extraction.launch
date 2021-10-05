@@ -1,0 +1,8 @@
+<launch>
+<arg name="catkin_path" default="/home/nehil/catkin_ws_registration/"/>
+
+
+<node pkg="shape_registration" type="find_trajectory_node" name="trajectory_extraction">
+  <param name="catkin_directory_path" type="string" value="$(arg catkin_path)"/>
+</node>
+</launch>

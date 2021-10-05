@@ -274,6 +274,11 @@ PointCloudT find_trajectory_from_p_cloud(const PointCloudT::Ptr &artery_cloud, P
 
 int main(int argc, char **argv)
 {
+
+  ros::init(argc, argv, "find_trajectory");
+  ros::NodeHandle nh;
+  std::string catkin_directory_path;
+  nh.getParam("trajectory_extraction/catkin_directory_path", catkin_directory_path);
   /**
     READ THE ARM AND ARTERY POINT CLOUDS
    **/
@@ -283,12 +288,12 @@ int main(int argc, char **argv)
   auto arm_cloud = std::make_shared<PointCloudT>();
   auto transformed_cloud = std::make_shared<PointCloudT>();
 
-  if (pcl::io::loadPCDFile<PointT> ("/home/nehil/catkin_ws_registration/src/artery_downsampled_robot_base.pcd", *artery_cloud) == -1) //* load the artery
+  if (pcl::io::loadPCDFile<PointT> (catkin_directory_path + "src/artery_downsampled_robot_base.pcd", *artery_cloud) == -1) //* load the artery
   {
     PCL_ERROR ("Couldn't read file\n");
   }
 
-  if (pcl::io::loadPCDFile<PointT> ("/home/nehil/catkin_ws_registration/src/arm_downsampled_robot_base.pcd", *arm_cloud) == -1) //* load the arm
+  if (pcl::io::loadPCDFile<PointT> (catkin_directory_path + "src/arm_downsampled_robot_base.pcd", *arm_cloud) == -1) //* load the arm
   {
     PCL_ERROR ("Couldn't read file\n");
   }
@@ -441,7 +446,7 @@ int main(int argc, char **argv)
      FIND THE POSES
    **/
 
-   ofstream myfile ("/home/nehil/catkin_ws_registration/src/artery_in_robot_base.txt");
+   ofstream myfile (catkin_directory_path + "src/artery_in_robot_base.txt");
    if (!myfile.is_open()) {
     std::cout << "ERROR" << std::endl;
    }
