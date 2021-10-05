@@ -7,6 +7,7 @@
 <arg name="segmented_CT_arm_data_path" default="/home/nehil/Documents/latest_slicer_data/plane_segmented_arm.pcd"/>
 <arg name="ROI_cloud_published_to" default="/points_created"/>
 <arg name="plane_segmented_cloud_published_to" default="/plane_segmented_data"/>
+<arg name="calibation_file_full_path" default="/home/nehil/.ros/easy_handeye/iiwa_azure_kinect_eye_on_base.yaml"/>
 
 
 <!-- Nodes -->
@@ -26,8 +27,8 @@
 </node>
 
 <!-- STEP 3: Register CT data with the point cloud data preprocessed in the previous step using ICP -->
-<node pkg="shape_registration" type="registration_node" name="icp_registration" output="screen">
-    <param name="calibration_file_path" type="string" value="/home/nehil/.ros/easy_handeye/iiwa_azure_kinect_eye_on_base.yaml"/>
+<node pkg="shape_registration" type="registration_node" name="icp_registration">
+    <param name="calibration_file_path" type="string" value="$(arg calibation_file_full_path)"/>
     <param name="catkin_directory_path" type="string" value="/home/nehil/catkin_ws_registration/"/>
     <param name="ct_arm_data_path" type="string" value="$(arg segmented_CT_arm_data_path)"/>
     <param name="ct_artery_data_path" type="string" value="$(arg CT_artery_data_path)"/>
@@ -38,3 +39,4 @@
 
 
 </launch>
+
