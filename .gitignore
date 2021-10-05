@@ -1,0 +1,10 @@
+#jzl
+#shape registration
+shape_registration/devel/
+shape_registration/build/
+
+dataset/
+
+#imfuison_part
+/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/ROS_VisionControl/devel/
+/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/ROS_VisionControl/build/
