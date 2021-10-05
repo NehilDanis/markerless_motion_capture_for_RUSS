@@ -12,10 +12,11 @@ PlaneSegmentation::PlaneSegmentation(ros::NodeHandle *nh)
   nh->getParam("plane_segmentation/input_path_arm_data", m_CT_arm_input_path);
   nh->getParam("plane_segmentation/output_path_segmented_arm_data", m_segmented_CT_arm_output_path);
   nh->getParam("plane_segmentation/input_path_artery_data", m_CT_artery_input_path);
+  nh->getParam("plane_segmentation/calibration_file_path", m_calibration_file_path);
 
   // read the calibration data from yaml file
 
-  YAML::Node config = YAML::LoadFile("/home/nehil/.ros/easy_handeye/iiwa_azure_kinect_eye_on_base.yaml");
+  YAML::Node config = YAML::LoadFile(m_calibration_file_path);
   YAML::Node attributes = config["transformation"];
 
   transformStamped.transform.rotation.x = attributes["qx"].as<double>();
