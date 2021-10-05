@@ -91,7 +91,6 @@ void optimize_normals(PointCloudT::Ptr &trajectory, pcl::PointCloud<pcl::Normal>
     if(theta_between_first_curr > 10.0) {
       // then first and curr has a large difference
       if(theta_between_first_second < 10.0) {
-        std::cout << "heyy" << std::endl;
         // then the curr point has an issue, lets change its normal
         trajectory_normals->points[i]._Normal::normal_x = (first_normal.x() + second_normal.x()) / 2;
         trajectory_normals->points[i]._Normal::normal_y = (first_normal.x() + second_normal.y()) / 2;
@@ -405,8 +404,8 @@ int main(int argc, char **argv)
    // Compute the features
    ne.compute (*trajectory_normals);
 
-   std::cout << trajectory_projected->points.size() << std::endl;
-   std::cout << trajectory_normals->points.size() << std::endl;
+   // std::cout << trajectory_projected->points.size() << std::endl;
+   // std::cout << trajectory_normals->points.size() << std::endl;
 
    optimize_normals(trajectory_projected, trajectory_normals);
 
@@ -415,8 +414,8 @@ int main(int argc, char **argv)
 //   trajectory_projected = std::make_shared<PointCloudT>(project_trajectory_onto_surface_method2(trajectory_projected, arm_cloud, trajectory_normals, new_normals));
 //   trajectory_normals = new_normals;
 
-   std::cout << trajectory_projected->points.size() << std::endl;
-   std::cout << trajectory_normals->points.size() << std::endl;
+   // std::cout << trajectory_projected->points.size() << std::endl;
+   // std::cout << trajectory_normals->points.size() << std::endl;
 
 //   for(auto &point : trajectory_normals->points) {
 //     point._Normal::normal_x *= -1;

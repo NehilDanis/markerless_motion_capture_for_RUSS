@@ -1,8 +1,8 @@
 <launch>
-<arg name="catkin_path" default="/home/nehil/catkin_ws_registration/"/>
+<arg name="catkin_path" default="/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/"/>
 
 
-<node pkg="shape_registration" type="find_trajectory_node" name="trajectory_extraction">
+<node pkg="shape_registration" type="find_trajectory_node" name="trajectory_extraction" output="screen" >
   <param name="catkin_directory_path" type="string" value="$(arg catkin_path)"/>
 </node>
 </launch>

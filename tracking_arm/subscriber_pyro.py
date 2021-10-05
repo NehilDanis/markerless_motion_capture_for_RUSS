@@ -8,7 +8,6 @@ import cv2
 import time
 
 import msgpack_numpy as m
-from torchsummary import summary
 m.patch()
 Pyro5.config.SERIALIZER = "msgpack"
 Pyro5.config.SERVERTYPE = "multiplex"
@@ -22,9 +21,8 @@ class SegmentArm(object):
         # create the model using the given model_path
         # Load the trained model
         #self.model = torch.load('/home/nehil/arm_w_tarso_data_folder/weights_vgg16.pt')
-        self.model = torch.load('/home/nehil/new_arm_w_tarso_data_folder/weights_vgg16_2.pt')
-        #print("hello")
-        #ssummary(self.model.cuda(), (3, 512, 512))
+        self.model = torch.load('/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/tracking_arm/network/weights_vgg16_2.pt')
+
 
 
         # Set the model to evaluate model

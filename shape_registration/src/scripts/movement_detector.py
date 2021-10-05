@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.7
 from __future__ import division
 # license removed for brevity
 import rospy
@@ -125,9 +125,14 @@ class MovementDetector():
 
     def create_pointcloud(self, img, depth_img, cam_info_msg, mask):
         fc = cv2.findContours(mask, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-        contours = fc[0]
+        contours = fc[1]
+        print("here:", len(contours))
         largest_contour = max(contours, key=cv2.contourArea)
+
         #cv2.drawContours(img, [largest_contour], -2, (0,255,0), 5)
+
+	print("heyyyy")
+
 
         # find the min-max x and y of the largest_contour and enlarge it as a square
         extLeft = largest_contour[largest_contour[:, :, 0].argmin()][0][0]
@@ -150,7 +155,6 @@ class MovementDetector():
         # define points (as small diamond shape)
         pts = np.array( [[[extLeft,extTop],[extRight,extTop],[extRight,extBot],[extLeft,extBot]]], dtype=np.int32 )
         cv2.fillPoly(mask_new, pts, 255 )
-        cv2.imwrite("/home/nehil/Desktop/mask.jpg", mask_new)
 
 
 
