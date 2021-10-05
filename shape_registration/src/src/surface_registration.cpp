@@ -32,8 +32,8 @@ SurfaceRegistration::SurfaceRegistration(ros::NodeHandle *nh)
 
 
   // Create ICP algorithm object
-
   this->m_shape_registration = std::make_shared<ICPAlgorithm>(max_num_iter);
+
 
   // load preoperative data
   // limb and artery surface
@@ -178,6 +178,7 @@ void SurfaceRegistration::compute(const sensor_msgs::PointCloud2ConstPtr& ros_cl
   // are shifted accordingly.
   move_source_and_target_closer(source, target, artery);
 
+
   // find the initial transformation between the source and target point clouds,
   // using the
   this->m_shape_registration->get_initial_transformation(source, target);
@@ -212,8 +213,8 @@ void SurfaceRegistration::compute(const sensor_msgs::PointCloud2ConstPtr& ros_cl
 
      // Save the points to pcd file.
 
-     pcl::io::savePCDFileASCII (this->m_catkin_dir_path + "arm_transformed.pcd", final_cloud);
-     pcl::io::savePCDFileASCII (this->m_catkin_dir_path + "arm_camera.pcd", *target);
+     pcl::io::savePCDFileASCII (this->m_catkin_dir_path + "src/arm_transformed.pcd", final_cloud);
+     pcl::io::savePCDFileASCII (this->m_catkin_dir_path + "src/arm_camera.pcd", *target);
      pcl::io::savePCDFileASCII (this->m_catkin_dir_path + "src/artery_in_cam.pcd", *artery);
 
      // publish the transformed source and artery clouds
