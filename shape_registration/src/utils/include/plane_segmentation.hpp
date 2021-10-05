@@ -40,6 +40,7 @@ private:
   std::string m_segmented_CT_arm_output_path;
   std::string m_CT_artery_input_path;
   std::string m_calibration_file_path;
+  std::string m_catkin_path;
   geometry_msgs::TransformStamped transformStamped;
   Eigen::Matrix4d transformation_to_robot_base;
 

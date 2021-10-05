@@ -13,6 +13,8 @@ PlaneSegmentation::PlaneSegmentation(ros::NodeHandle *nh)
   nh->getParam("plane_segmentation/output_path_segmented_arm_data", m_segmented_CT_arm_output_path);
   nh->getParam("plane_segmentation/input_path_artery_data", m_CT_artery_input_path);
   nh->getParam("plane_segmentation/calibration_file_path", m_calibration_file_path);
+  nh->getParam("plane_segmentation/catkin_directory_path", m_catkin_path);
+  
 
   // read the calibration data from yaml file
 
@@ -71,7 +73,7 @@ void PlaneSegmentation::compute(const sensor_msgs::PointCloud2ConstPtr& ros_clou
       pcl::transformPointCloud(*segmented_cloud, *segmented_cloud, this->transformation_to_robot_base);
 
       // Save the points to pcd file.
-      pcl::io::savePCDFileASCII ("/home/nehil/catkin_ws_registration/src/segmented_cloud_in_robot_base.pcd", *segmented_cloud);
+      pcl::io::savePCDFileASCII (m_catkin_path + "src/segmented_cloud_in_robot_base.pcd", *segmented_cloud);
       file_saved = true;
 
 

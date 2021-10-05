@@ -15,6 +15,7 @@ void ICPAlgorithm::get_initial_transformation(PointCloudT::Ptr &source, PointClo
   if(!this->m_corr_filtered.empty()) {
     this->m_corr_filtered.clear();
   }
+
   // Before applying icp, it is better to find an initial alignment, between the clouds.
 
 //  double start_calc_normals =ros::Time::now().toSec();
@@ -49,7 +50,6 @@ void ICPAlgorithm::get_initial_transformation(PointCloudT::Ptr &source, PointClo
    PointCloudT::Ptr source_keypoints(new PointCloudT);
    PointCloudT::Ptr source_non_keypoints(new PointCloudT);
    Preprocessing::extract_indices(source, source_keypoints_indices, source_keypoints, source_non_keypoints);
-
    /**
     FIND PERSISTENT FEATURES FOR THE TARGET CLOUD
     */
@@ -60,7 +60,6 @@ void ICPAlgorithm::get_initial_transformation(PointCloudT::Ptr &source, PointClo
    PointCloudT::Ptr target_keypoints(new PointCloudT);
    PointCloudT::Ptr target_non_keypoints(new PointCloudT);
    Preprocessing::extract_indices(target, target_keypoints_indices, target_keypoints, target_non_keypoints);
-
 //   double finish_calc_persistent_feat =ros::Time::now().toSec();
 
 //   ROS_INFO("Time takes for calculating persistent features: %f", finish_calc_persistent_feat - start_calc_persistent_feat);
