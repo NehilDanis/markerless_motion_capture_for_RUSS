@@ -8,6 +8,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 find_package(PCL 1.11.1 REQUIRED)
+
+
 find_package(Yaml-cpp 0.6.0 REQUIRED)
 #find_package(OpenCV 4.5.2 REQUIRED core imgproc calib3d video features2d highgui)
 message("??? ${OpenCV_LIBS}")
@@ -28,7 +30,8 @@ find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   geometry_msgs
   tf2
-  tf2_ros)
+  tf2_ros
+)
 
 find_package(OpenCV 3 REQUIRED)
 

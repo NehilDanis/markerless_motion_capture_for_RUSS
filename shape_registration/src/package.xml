@@ -59,6 +59,8 @@
   <build_depend>geometry_msgs</build_depend>
   <build_depend>iiwa_msgs</build_depend>
   <build_depend>iiwa_ros</build_depend>
+  <build_depend>libpcl-all-dev</build_depend>
+
   <build_export_depend>iiwa_msgs</build_export_depend>
   <build_export_depend>iiwa_ros</build_export_depend>
   <build_export_depend>roscpp</build_export_depend>
@@ -69,6 +71,7 @@
   <build_export_depend>image_transport</build_export_depend>
   <build_export_depend>cv_bridge</build_export_depend>
   <build_export_depend>geometry_msgs</build_export_depend>
+
   <exec_depend>iiwa_msgs</exec_depend>
   <exec_depend>iiwa_ros</exec_depend>
   <exec_depend>roscpp</exec_depend>
@@ -79,4 +82,14 @@
   <exec_depend>image_transport</exec_depend>
   <exec_depend>cv_bridge</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>libpcl-all</exec_depend>
 </package>
+
+
+
+  
+
+
+
+
+
