@@ -43,6 +43,6 @@ For the python 3 environment:<br />
 | Commands | Description |
 | :----: | :----: |
 | `$roslaunch shape_registration registration.launch` | To run the surface registration, please change the registration.launch file according to the path or your CT and artery data |
+| `$roslaunch shape_registration trajectory_extraction.launch` | To create scan trajectory |
 | First let's start the segmentation network, go to terminal and run the following:<br>`$arm_tracking`<br>start the pyro server:<br>`$pyro5-ns`<br>`$python tracking_arm/subscriber_pyro.py`<br>Now start the ROS part:<br>`$roslaunch shape_registration movement_monitoring_and_tracking.launch`<br>Then start the pyro server in the ros side<br>`$ros_pyro_env`<br>`$rosrun shape_registration publisher_pyro.py`| Movement monitoring section is a bit tricky, follow the commands!|
 | `$roslaunch shape_registration image_saving_for_training.launch` | To capture RGB images using the azure kinect, in case you want to create a data set. |
-| `$roslaunch shape_registration trajectory_extraction.launch` | To create scan trajectory |
