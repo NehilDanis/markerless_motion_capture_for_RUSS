@@ -33,7 +33,7 @@ For the python 3 environment:<br />
 `$conda env create -f environment.yaml`<br />
 `$conda activate arm_tracking_env`<br />
 `$pip install -r tracking_arm/requirements.txt`<br />
-12) [Optional] After you created the environments, you can create aliases. Add below lines into your bashrc:
+12) [Optional] After you created the environments, you can create aliases. Add below lines into your bashrc: <br />
 `alias ros_pyro_env="source activate ros_pyro_env"`<br />
 `alias arm_tracking="source activate arm_tracking_env"`<br />
 13) Good luck :)
@@ -44,5 +44,5 @@ For the python 3 environment:<br />
 | :----: | :----: |
 | `$roslaunch shape_registration registration.launch` | To run the surface registration, please change the registration.launch file according to the path or your CT and artery data |
 | `$roslaunch shape_registration trajectory_extraction.launch` | To create scan trajectory |
-| First let's start the segmentation network, go to terminal and run the following:<br>`$source activate arm_tracking_env`<br>start the pyro server:<br>`$pyro5-ns`<br>`$python tracking_arm/subscriber_pyro.py`<br>Now start the ROS part:<br>`$roslaunch shape_registration movement_monitoring_and_tracking.launch`<br>Then start the pyro server in the ros side<br>`$source activate ros_pyro_env`<br>`$rosrun shape_registration publisher_pyro.py`| Movement monitoring section is a bit tricky, follow the commands!|
+| First let's start the segmentation network, go to terminal and run the following:<br>`$conda activate arm_tracking_env`<br>start the pyro server:<br>`$pyro5-ns`<br>`$python tracking_arm/subscriber_pyro.py`<br>Now start the ROS part:<br>`$roslaunch shape_registration movement_monitoring_and_tracking.launch`<br>Then start the pyro server in the ros side<br>`$conda activate ros_pyro_env`<br>`$rosrun shape_registration publisher_pyro.py`| Movement monitoring section is a bit tricky, follow the commands!|
 | `$roslaunch shape_registration image_saving_for_training.launch` | To capture RGB images using the azure kinect, in case you want to create a data set. |
