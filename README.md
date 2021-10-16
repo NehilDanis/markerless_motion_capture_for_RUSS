@@ -26,7 +26,7 @@ This work aims to achieve the robotic ultrasound while compensating expected and
 10) After this do `$catkin_make` in your catkin workspace root, and if there are no issues continue.
 11) You will need to environments to run python codes, well since when I started this project, I started with Melodic, and I was not able to use Python3, I used [pyro5](https://pyro5.readthedocs.io/en/latest/ "pyro5") to connect my Python2 ROS workspace with the python3 environment that I used for training. Due to this you will need two python environments.<br />
 For the python2 environment in your ROS workspace:<br />
-`$conda create --name ros_pyro_env python=2.7`<br />
+`$conda create --name ros_pyro_env python=3.8`<br />
 `$conda activate ros_pyro_env`<br />
 `$pip install -r src/shape_registration/src/ros_python_requirements.txt`<br />
 For the python 3 environment:<br />
