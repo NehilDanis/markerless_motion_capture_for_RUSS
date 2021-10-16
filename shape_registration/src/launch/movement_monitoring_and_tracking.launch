@@ -5,13 +5,16 @@
 <arg name="board_x" default="7" doc="Set this, if you use chessboard pattern, The number of grids along the x axis, in the inner part" />
 <arg name="board_y" default="6" doc="Set this, if you use chessboard pattern,The number of grids along the y axis, in the inner part" />
 <arg name="calibation_file_full_path" default="/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/dataset/registration/iiwa_azure_kinect_eye_on_base.yaml"/>
-
+<arg name="use_test_gui" default="False" doc="Set to true if you want to use it without the robot"/>
+    
 <!-- STEP 1: START CAMERA DRIVER -->
 <!-- Includes from other ROS packages-->
 <include file="$(find shape_registration)/launch/start_azure_rectifiers.launch"/>
 
 <!-- STEP 2: START MOVEMENT MONITORING -->
-<node pkg="shape_registration" type="movement_detector.py" name="movement_detector" output="screen"/>
+<node pkg="shape_registration" type="movement_detector.py" name="movement_detector" output="screen">
+    <param name="use_test_gui" type="boolean" value="$(arg use_test_gui)"/>
+</node>
 
 <!-- STEP 3: START TRACKING -->
 <node pkg="shape_registration" type="tracking_node" name="movement_monitoring" output="screen">
