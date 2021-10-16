@@ -281,13 +281,15 @@ class MovementDetector():
 def main(args):
     rospy.init_node('MovementDetectorNode', anonymous=True)
     pp = MovementDetector()
-    # create pyqt5 app
-    App = QApplication(sys.argv)
+    test_gui = rospy.get_param("movement_detector/use_test_gui")
+    if test_gui:
+        #create pyqt5 app
+        App = QApplication(sys.argv)
 
-    # create the instance of our Window
-    window = Window()
+        # create the instance of our Window
+        window = Window()
 
-    sys.exit(App.exec_())
+        sys.exit(App.exec_())
 
     try:
         rospy.spin()
