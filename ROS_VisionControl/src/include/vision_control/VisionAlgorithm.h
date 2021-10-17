@@ -274,6 +274,8 @@ public:
   int onGetStepFanMotionIteration();
   void stopStepFanMotion();
 
+  void onInitROS();
+
 
 
   //used for saving the two end points
@@ -526,6 +528,7 @@ private:
   ros::Publisher m_unet_segmentation_pub;
   ros::Subscriber m_unet_segmentation_sub;
   ImageStream* usStream;
+  bool m_ros_initialized{false};
 
 };
 }  // namespace OrienAdj

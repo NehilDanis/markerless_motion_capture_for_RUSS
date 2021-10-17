@@ -8,6 +8,6 @@ src/
 
 .catkin_workspace
 
-#imfuison_part
-/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/ROS_VisionControl/devel/
-/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/ROS_VisionControl/build/
+ROS_VisionControl/devel/
+ROS_VisionControl/build/
+

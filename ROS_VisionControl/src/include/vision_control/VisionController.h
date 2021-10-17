@@ -201,6 +201,10 @@ public slots:
    */
   void onGoInitPosClick();
 
+
+  //JZL
+  void onClickedpbtnInitROS();
+
 signals:
   // Emit connection signals so other plugins can check the robot status.
   void robotConnected();

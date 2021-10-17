@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>696</height>
+    <height>727</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,44 +27,30 @@
        <string>TestFunction</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="4" column="0">
-        <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item row="3" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QPushButton" name="pbtnSaveHome">
+          <widget class="QPushButton" name="pbtnConnect">
            <property name="text">
-            <string>Save Home</string>
+            <string>Connect</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pbtnSaveOut">
+          <widget class="QPushButton" name="pbtnDisconnect">
            <property name="text">
-            <string>Save Out</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pbtnGoHome">
-           <property name="text">
-            <string>GoHome</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pbtnGoOut">
-           <property name="text">
-            <string>GoOut</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pbtnStartUSStream">
-           <property name="text">
-            <string>Start US Stream</string>
+            <string>Disconnect</string>
            </property>
           </widget>
          </item>
         </layout>
+       </item>
+       <item row="18" column="0">
+        <widget class="QPushButton" name="pbtn_test_rotation">
+         <property name="text">
+          <string>Test Rotation</string>
+         </property>
+        </widget>
        </item>
        <item row="1" column="0">
         <layout class="QGridLayout" name="gridLayout">
@@ -201,7 +187,85 @@
          </item>
         </layout>
        </item>
-       <item row="14" column="0">
+       <item row="11" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_13">
+         <item>
+          <widget class="QLineEdit" name="ledtSliceIndex">
+           <property name="placeholderText">
+            <string>Index in Sweep</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbtnComputerConfiMap">
+           <property name="text">
+            <string>Compute Confi Map</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="9" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLineEdit" name="ledt_full_path_to_imf">
+           <property name="placeholderText">
+            <string>Full path to an .imf file</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbtnLoadSweep_imf">
+           <property name="text">
+            <string>Load imf sweep</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="4" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QPushButton" name="pbtnSaveHome">
+           <property name="text">
+            <string>Save Home</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbtnSaveOut">
+           <property name="text">
+            <string>Save Out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbtnGoHome">
+           <property name="text">
+            <string>GoHome</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbtnGoOut">
+           <property name="text">
+            <string>GoOut</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="7" column="0">
+        <widget class="QPushButton" name="pbtnStartUSStream">
+         <property name="text">
+          <string>Start US Stream</string>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <property name="topMargin">
           <number>0</number>
@@ -209,7 +273,7 @@
          <item>
           <widget class="QLineEdit" name="ledt_trajectory_file_to_write">
            <property name="text">
-            <string>/home/nehil/catkin_ws_registration/src/artery_in_robot_base.txt</string>
+            <string>/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/src/artery_in_robot_base.txt</string>
            </property>
           </widget>
          </item>
@@ -221,6 +285,13 @@
           </widget>
          </item>
         </layout>
+       </item>
+       <item row="13" column="0">
+        <widget class="QPushButton" name="pbtnVisualizeConfimap">
+         <property name="text">
+          <string>Visualize Confimap</string>
+         </property>
+        </widget>
        </item>
        <item row="0" column="0">
         <layout class="QGridLayout" name="gridLayout_5">
@@ -324,83 +395,19 @@
          </item>
         </layout>
        </item>
-       <item row="11" column="0">
-        <widget class="QPushButton" name="pbtnVisualizeConfimap">
-         <property name="text">
-          <string>Visualize Confimap</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
+       <item row="6" column="0">
         <widget class="QPushButton" name="pbtnStopUSStream">
          <property name="text">
           <string>Stop US Stream</string>
          </property>
         </widget>
        </item>
-       <item row="9" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_13">
-         <item>
-          <widget class="QLineEdit" name="ledtSliceIndex">
-           <property name="placeholderText">
-            <string>Index in Sweep</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pbtnComputerConfiMap">
-           <property name="text">
-            <string>Compute Confi Map</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="3" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QPushButton" name="pbtnConnect">
-           <property name="text">
-            <string>Connect</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pbtnDisconnect">
-           <property name="text">
-            <string>Disconnect</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="16" column="0">
-        <widget class="QPushButton" name="pbtn_test_rotation">
+       <item row="5" column="0">
+        <widget class="QPushButton" name="pbtnInitROS">
          <property name="text">
-          <string>Test Rotation</string>
+          <string>Initialize ROS</string>
          </property>
         </widget>
-       </item>
-       <item row="7" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_8">
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QLineEdit" name="ledt_full_path_to_imf">
-           <property name="placeholderText">
-            <string>Full path to an .imf file</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pbtnLoadSweep_imf">
-           <property name="text">
-            <string>Load imf sweep</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </item>
       </layout>
      </widget>
@@ -537,7 +544,7 @@
        <item row="0" column="0">
         <widget class="QLineEdit" name="ledt_poses_file_path">
          <property name="text">
-          <string>/home/nehil/catkin_ws_registration/src/artery_in_robot_base.txt</string>
+          <string>/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/src/artery_in_robot_base.txt</string>
          </property>
         </widget>
        </item>

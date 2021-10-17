@@ -12,6 +12,7 @@ find_package(PCL 1.11.1 REQUIRED)
 
 find_package(Yaml-cpp 0.6.0 REQUIRED)
 #find_package(OpenCV 4.5.2 REQUIRED core imgproc calib3d video features2d highgui)
+#find_package(OpenCV 3 REQUIRED)
 message("??? ${OpenCV_LIBS}")
 message("??? END")
 

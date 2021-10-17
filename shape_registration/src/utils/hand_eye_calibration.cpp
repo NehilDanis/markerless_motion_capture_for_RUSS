@@ -46,8 +46,8 @@ int main() {
   auto icp_ = std::make_shared<ICPAlgorithm>(1000);
 
   PointCloudT::Ptr result (new PointCloudT);
-  auto coords_in_cam = read_file("/home/nehil/catkin_ws_registration/src/shape_registration/test_cam.txt");
-  auto coords_in_robot = read_file("/home/nehil/catkin_ws_registration/src/shape_registration/test_robot.txt");
+  auto coords_in_cam = read_file("/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/dataset/clibration/coords_in_camera.txt");
+  auto coords_in_robot = read_file("/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/dataset/clibration/coords_in_robot.txt");
 
 
   icp_->find_initial_transform_for_small_sets(coords_in_cam, coords_in_robot);

@@ -102,6 +102,8 @@ void PluginController::init() {
   connect(ui_->pbtnCreateUSForLabelsWithoutStich, &QPushButton::clicked, this, &PluginController::onClickedCreateSweepFromLabel);
   connect(ui_->pbtn_stitching, &QPushButton::clicked, this, &PluginController::onClickedStitching);
   connect(ui_->pbtnWriteCurrRobotPose, &QPushButton::clicked, this, &PluginController::onClickedWriteRobotPose);
+
+  connect(ui_->pbtnInitROS, &QPushButton::clicked, this, &PluginController::onClickedpbtnInitROS);
 }
 
 
@@ -144,9 +146,17 @@ void PluginController::onReadPosesClick() {
 
 }
 
+
+void PluginController::onClickedpbtnInitROS() {
+    algorithm_->onInitROS();
+
+}
+
+
+
 void PluginController::onClickedWriteRobotPose() {
   std::ofstream outfile;
-  std::string file_path = ui_->pbtnWriteCurrRobotPose->text().toStdString();
+  std::string file_path = ui_->ledt_trajectory_file_to_write->text().toStdString();
   outfile.open(file_path, std::ios_base::app); // append instead of overwrite
   auto pose = algorithm_->getCurrentRobotPose();
   outfile << std::to_string(pose.pose.position.x) << " " << std::to_string(pose.pose.position.y)
@@ -757,7 +767,7 @@ void PluginController::onDownsampleUSSweepClicked() {
   UltrasoundSweep* usSweepFinalUncompensated = static_cast<UltrasoundSweep*>(usSweepFinal);
   auto str = getDayAndTime();
   BackgroundExporter* sweepExporter = new BackgroundExporter();
-  sweepExporter->save(usSweepFinalUncompensated, "/home/nehil/catkin_ws_registration/src/ROS_VisionControl/sweeps/dowsampled_by_" + std::to_string(downsampling_param) + "_" + str + ".imf");
+  sweepExporter->save(usSweepFinalUncompensated, "/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/src/sweeps/dowsampled_by_" + std::to_string(downsampling_param) + "_" + str + ".imf");
 }
 
 void PluginController::write_sweep_into_file(SharedImageSet* final_sweep, std::string sweep_dir) {

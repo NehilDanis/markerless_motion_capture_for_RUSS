@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # license removed for brevity
 import rospy
 import sys
@@ -18,9 +18,9 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 class UltrasoundSegmentation():
     def __init__(self):
-        PATH = os.path.expanduser("~/new_arm_w_tarso_data_folder/UNet/unet_usseg_arm_phantom.pth")
+        PATH = "/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/dataset/UNET/unet_usseg_arm_phantom.pth"
         self.unet = UNet(init_features=64).to(device)
-        self.unet.load_state_dict(torch.load(PATH))
+        if self.unet.load_state_dict(torch.load(PATH)): print("ready")
         self.unet.eval()
 
         self.bridge = CvBridge()
@@ -28,11 +28,8 @@ class UltrasoundSegmentation():
                     transforms.ToTensor(),
                     transforms.Normalize((0.5,), (0.5,))
                 ])
-        self.pub_img = rospy.Publisher("segmentedImg",Image, queue_size=2)
-#        while(True):
-#            #img_msg = rospy.wait_for_message("/imfusion/cephasonics",Image)
-#            self.callback(img_msg)
-        self.sub_img = rospy.Subscriber("ultrasound_img",Image,self.callback)
+        self.pub_img = rospy.Publisher("/segmentedImg",Image, queue_size=2)
+        self.sub_img = rospy.Subscriber("/ultrasound_img",Image,self.callback)
 
     def callback(self, img_msg):
         print(device)
@@ -89,6 +86,7 @@ class UltrasoundSegmentation():
         msg.step = 1 * mask.shape[1]
         msg.data = np.array(mask).tobytes()
         self.pub_img.publish(msg)
+
 
 
 def main(args):

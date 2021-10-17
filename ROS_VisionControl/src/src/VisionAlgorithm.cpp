@@ -12,20 +12,7 @@ namespace ImFusion {
 namespace vision_control {
 
 PluginAlgorithm::PluginAlgorithm() {
-  std::map<std::string, std::string> emptyArgs;
-  if (!ros::isInitialized()) { ros::init(emptyArgs, "iiwaRos"); }
-  ros_spinner_ = std::make_unique<ros::AsyncSpinner>(1);
-  ros_spinner_->start();
-
-  // create a ROS handle to connect the neural network and the movement tracking parts
-  ros::NodeHandle nh;
-  // subscribers
-  this->m_check_movement_sub = nh.subscribe("movement_occured", 1, &PluginAlgorithm::check_movement, this);
-  this->m_unet_segmentation_sub = nh.subscribe("segmentedImg", 2, &PluginAlgorithm::receive_us_results, this);
-
-  // publishers
-  this->m_calc_transformation_pub = nh.advertise<std_msgs::Bool>("/button_pressed_from_app", 1);
-  this->m_unet_segmentation_pub = nh.advertise<sensor_msgs::Image>("ultrasound_img", 1);
+  onInitROS();
 
   probe_rotation_.block<4, 4>(0, 0) << 0, 0, 1, 0,
       1, 0, 0, 0,
@@ -71,17 +58,45 @@ cv::Point PluginAlgorithm::find_closest_centroid(const std::vector<std::vector<c
   return result;
 }
 
+
+//initialize the ros related node.
+void PluginAlgorithm::onInitROS() {
+    std::map<std::string, std::string> emptyArgs;
+    if (!ros::isInitialized()) { ros::init(emptyArgs, "iiwaRos"); }
+    ros_spinner_ = std::make_unique<ros::AsyncSpinner>(1);
+    ros_spinner_->start();
+
+    // create a ROS handle to connect the neural network and the movement tracking parts
+    ros::NodeHandle nh;
+    // subscribers
+    this->m_check_movement_sub = nh.subscribe("movement_occured", 1, &PluginAlgorithm::check_movement, this);
+    this->m_unet_segmentation_sub = nh.subscribe("segmentedImg", 2, &PluginAlgorithm::receive_us_results, this);
+
+    // publishers
+    this->m_calc_transformation_pub = nh.advertise<std_msgs::Bool>("/button_pressed_from_app", 1);
+    this->m_unet_segmentation_pub = nh.advertise<sensor_msgs::Image>("/ultrasound_img", 1);
+    this->m_ros_initialized = true;
+    LOG_INFO(this->m_ros_initialized);
+}
+
+
+
 void PluginAlgorithm::unet_segmentation(cv::Mat us_image) {
-  cv_bridge::CvImage tmp;
-  tmp.image = us_image;
-  tmp.encoding = sensor_msgs::image_encodings::MONO8;
-  auto cv_ptr = std::make_shared<cv_bridge::CvImage>(tmp);
-  //cv_ptr->image = us_image;
-  while (this->m_unet_segmentation_pub.getNumSubscribers() < 1) {
-      // wait for a connection to publisher
-      // you can do whatever you like here or simply do nothing
-  }
-  m_unet_segmentation_pub.publish(cv_ptr->toImageMsg());
+    if(this->m_ros_initialized) {
+        cv_bridge::CvImage tmp;
+        tmp.image = us_image;
+        tmp.encoding = sensor_msgs::image_encodings::MONO8;
+        auto cv_ptr = std::make_shared<cv_bridge::CvImage>(tmp);
+        //cv_ptr->image = us_image;
+        while (this->m_unet_segmentation_pub.getNumSubscribers() < 1) {
+            // wait for a connection to publisher
+            // you can do whatever you like here or simply do nothing
+        }
+        m_unet_segmentation_pub.publish(cv_ptr->toImageMsg());
+    }
+    else{
+        LOG_ERROR("PLEASE INITIALIZE ROS USING INITIALIZE ROS BUTTON!");
+    }
 }
 
 
@@ -112,7 +127,7 @@ void PluginAlgorithm::calculate_confidance_map() {
   // save confimap thresholded
   cv::Mat new_img(nImageHeight, nImageWidth, CV_8UC1, cv::Scalar(255));
   cv::resize(m_cvMatConfiMapUChar, new_img, cv::Size(375, 550));
-  cv::imwrite("/home/nehil/thesis_result_files/confimap_thresholded/thresholded_" + std::to_string(img_idx) + ".png", new_img);
+//  cv::imwrite("/home/nehil/thesis_result_files/confimap_thresholded/thresholded_" + std::to_string(img_idx) + ".png", new_img);
   this->img_idx += 1 ;
 }
 
@@ -177,7 +192,7 @@ float PluginAlgorithm::optimize_curr_probe_pose(MemImage* memImage) {
   // save us imaging
   cv::Mat new_img(nImageHeight, nImageWidth, CV_32FC1, cv::Scalar(255));
   cv::resize(cv_imgIn, new_img, cv::Size(375, 550));
-  cv::imwrite("/home/nehil/thesis_result_files/confimap_img/us_image_" + std::to_string(this->img_idx) + ".png", new_img);
+//  cv::imwrite("/home/nehil/thesis_result_files/confimap_img/us_image_" + std::to_string(this->img_idx) + ".png", new_img);
 
 
 
@@ -282,7 +297,7 @@ void PluginAlgorithm::check_movement(const std_msgs::BoolPtr movement_occured) {
 }
 
 void PluginAlgorithm::write_txt_file(std::string file_name, unsigned int break_point, bool f_half) {
-  std::ofstream fs("/home/nehil/catkin_ws_registration/src/ROS_VisionControl/sweeps/trajectory/" + file_name + ".txt");
+  std::ofstream fs("/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/src/sweeps/trajectory/" + file_name + ".txt");
   if(!fs)
   {
       std::cerr<<"Cannot open the output file."<<std::endl;
@@ -304,7 +319,7 @@ void PluginAlgorithm::write_txt_file(std::string file_name, unsigned int break_p
 }
 
 void PluginAlgorithm::write_transformation(Eigen::Matrix4f transformation) {
-  std::ofstream fs("/home/nehil/catkin_ws_registration/src/ROS_VisionControl/sweeps/transformation/" + std::to_string(m_transformation_count) + ".txt");
+  std::ofstream fs("/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/src/sweeps/transformation/" + std::to_string(m_transformation_count) + ".txt");
   if(!fs)
   {
       std::cerr<<"Cannot open the output file."<<std::endl;
@@ -570,9 +585,6 @@ void PluginAlgorithm::set_new_stream(Data *us_stream, Data *robot_stream) {
 
 void PluginAlgorithm::VisionMovementFinishCallback() {
 
-    std::ofstream outfile;
-
-    outfile.open("/home/nehil/catkin_ws_registration/src/tracking_results/curr_ultrasound_sweep.txt", std::ios_base::app); // append instead of overwrite
     LOG_INFO("enter VisionMovementFinishCallback");
     int n_poseNumber = m_scanPointPoses.size();
     if(m_MoveStatus != ON_INITIAL_POSE)
@@ -588,8 +600,6 @@ void PluginAlgorithm::VisionMovementFinishCallback() {
 
       Eigen::Matrix3d matrix{Eigen::Matrix3d::Identity()};
       matrix.block<3, 3>(0, 0) = quaPose.toRotationMatrix();
-      outfile << "Current position : " <<  std::to_string(m_nIteration) << " " << std::to_string(vecPosition.x()) << " " << std::to_string(vecPosition.y()) << " " << std::to_string(vecPosition.z()) << "\n";
-
       // the first movement is from initial position to the 0th position of the sweep
       // if the current position of the probe is -1 then the m_nIteration will be 0
       // at this point since the probe won't be touching the arm, we don't want to calculate the confimap
@@ -685,7 +695,7 @@ void PluginAlgorithm::stop_recording_us_stream() {
     auto sis = static_cast<SharedImageSet*>(datalist.getItem(0)); //sis:=SharedImageSet
     auto str = getDayAndTime();
     BackgroundExporter* sweepExporter = new BackgroundExporter();
-    sweepExporter->save(sis, "/home/nehil/catkin_ws_registration/src/ROS_VisionControl/sweeps/complete_sweep_" + std::to_string(m_transformation_count) + ".imf");
+    sweepExporter->save(sis, "/home/zhongliang/ros/nehil/markerless_motion_capture_for_RUSS/src/sweeps/complete_sweep_" + std::to_string(m_transformation_count) + ".imf");
 }
 
 std::string PluginAlgorithm::getDayAndTime() {
