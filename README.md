@@ -46,3 +46,19 @@ For the python 3 environment:<br />
 | `$roslaunch shape_registration trajectory_extraction.launch` | To create scan trajectory |
 | First let's start the segmentation network, go to terminal and run the following:<br>`$conda activate arm_tracking_env`<br>start the pyro server:<br>`$pyro5-ns`<br>`$python tracking_arm/subscriber_pyro.py`<br>Now start the ROS part:<br>`$roslaunch shape_registration movement_monitoring_and_tracking.launch`<br>Then start the pyro server in the ros side<br>`$conda activate ros_pyro_env`<br>`$rosrun shape_registration publisher_pyro.py`| Movement monitoring section is a bit tricky, follow the commands!|
 | `$roslaunch shape_registration image_saving_for_training.launch` | To capture RGB images using the azure kinect, in case you want to create a data set. |
+
+## Citation
+
+If you use this code in your research, please cite:
+
+```
+@article{jiang2022precise,
+  title={Precise repositioning of robotic ultrasound: Improving registration-based motion compensation using ultrasound confidence optimization},
+  author={Jiang, Zhongliang and Danis, Nehil and Bi, Yuan and Zhou, Mingchuan and Kroenke, Markus and Wendler, Thomas and Navab, Nassir},
+  journal={IEEE Transactions on Instrumentation and Measurement},
+  volume={71},
+  pages={1--11},
+  year={2022},
+  publisher={IEEE}
+}
+```
